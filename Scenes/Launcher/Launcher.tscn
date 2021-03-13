@@ -12,8 +12,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-games_list_path = NodePath("MarginContainer/VBoxContainer/Control/VBoxContainer/MarginContainer2/ScrollContainer/GamesList")
-empty_label_path = NodePath("MarginContainer/VBoxContainer/Control/EmptyLabel")
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -42,18 +40,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ImportGame" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 380.0
-margin_bottom = 20.0
+margin_bottom = 14.0
+text = "Godot Game Launcher"
+align = 1
+
+[node name="ImportGame" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 380.0
+margin_bottom = 38.0
 text = "Import"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
-margin_top = 24.0
+margin_top = 42.0
 margin_right = 380.0
-margin_bottom = 308.0
+margin_bottom = 332.0
 size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/Control"]
@@ -98,7 +103,7 @@ text = "Saved Games"
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer"]
 margin_top = 18.0
 margin_right = 360.0
-margin_bottom = 288.0
+margin_bottom = 294.0
 size_flags_vertical = 3
 custom_constants/margin_right = 10
 custom_constants/margin_left = 10
@@ -111,7 +116,7 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/MarginContainer2"]
 margin_left = 10.0
 margin_right = 350.0
-margin_bottom = 260.0
+margin_bottom = 266.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -119,14 +124,14 @@ __meta__ = {
 
 [node name="GamesList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Control/VBoxContainer/MarginContainer2/ScrollContainer"]
 margin_right = 340.0
-margin_bottom = 260.0
+margin_bottom = 266.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RefreshList" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 312.0
+margin_top = 336.0
 margin_right = 380.0
-margin_bottom = 332.0
+margin_bottom = 356.0
 size_flags_vertical = 8
 text = "Refresh List"
 __meta__ = {
@@ -134,9 +139,9 @@ __meta__ = {
 }
 
 [node name="OpenFolder" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 336.0
+margin_top = 360.0
 margin_right = 380.0
-margin_bottom = 356.0
+margin_bottom = 380.0
 size_flags_vertical = 8
 text = "Open games folder"
 __meta__ = {
@@ -144,16 +149,31 @@ __meta__ = {
 }
 
 [node name="UpdateLauncher" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 margin_top = 360.0
 margin_right = 380.0
 margin_bottom = 380.0
 size_flags_vertical = 8
-disabled = true
 text = "Update Launcher"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DownloadLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 366.0
+margin_right = 380.0
+margin_bottom = 380.0
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 366.0
+margin_right = 380.0
+margin_bottom = 380.0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+download_chunk_size = 512
+use_threads = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ImportGame" to="." method="_on_ImportGame_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RefreshList" to="." method="refresh_games_list"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OpenFolder" to="." method="open_games_folder"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/UpdateLauncher" to="." method="open_games_folder"]
