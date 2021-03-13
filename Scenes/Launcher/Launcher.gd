@@ -1,7 +1,7 @@
 extends Control
 
 var save_location = OS.get_user_data_dir()+"/SavedGames/"
-var current_version = "v0.0.1"
+var current_version = "v0.2"
 var updating = false
 var update_file_size := 0
 
