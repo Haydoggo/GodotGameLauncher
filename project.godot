@@ -16,9 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Launcher"
-run/main_scene="res://MainScene.tscn"
+run/main_scene="res://Scenes/Launcher/Launcher.tscn"
 run/low_processor_mode=true
-config/icon="res://icon.png"
 
 [display]
 
@@ -74,4 +73,4 @@ ui_down={
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Assets/Environments/default_env.tres"

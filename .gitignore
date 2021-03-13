@@ -1,7 +1,8 @@
 *.o
 *.os
 .import/
-TestGames
+.test games/
+.builds/
 *.dblite
 *.exp
 *.lib
