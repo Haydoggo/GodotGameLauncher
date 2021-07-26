@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/Launcher/Launcher.gd" type="Script" id=1]
+[ext_resource path="res://Launcher.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.37, 0.37, 0.37, 1 )
@@ -172,8 +172,8 @@ margin_right = 380.0
 margin_bottom = 380.0
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
-download_chunk_size = 512
 use_threads = true
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ImportGame" to="." method="_on_ImportGame_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RefreshList" to="." method="refresh_games_list"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OpenFolder" to="." method="open_games_folder"]

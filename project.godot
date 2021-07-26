@@ -10,14 +10,14 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
 config/name="Launcher"
-run/main_scene="res://Scenes/Launcher/Launcher.tscn"
+run/main_scene="res://Launcher.tscn"
 run/low_processor_mode=true
+boot_splash/fullsize=false
 
 [display]
 
@@ -25,11 +25,7 @@ window/size/width=400
 window/size/height=400
 window/dpi/allow_hidpi=true
 window/vsync/vsync_via_compositor=true
-window/per_pixel_transparency/allowed=true
-
-[gdnative]
-
-singletons=[  ]
+window/energy_saving/keep_screen_on=false
 
 [input]
 
@@ -70,7 +66,3 @@ ui_down={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
-
-[rendering]
-
-environment/default_environment="res://Assets/Environments/default_env.tres"

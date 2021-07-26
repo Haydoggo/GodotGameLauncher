@@ -1,7 +1,7 @@
 extends Control
 
 var save_location = OS.get_user_data_dir()+"/SavedGames/"
-var current_version = "v0.2"
+var current_version = "v0.4"
 var updating = false
 var update_file_size := 0.0
 
@@ -31,21 +31,27 @@ func _ready():
 			dirManager.remove(exec_fname.split(".tmp")[0] + ".exe")
 			dirManager.rename(exec_fname, exec_path.get_file().split(".tmp")[0] + ".exe")
 		
-		# If any of the arguments are paths, it will be from the user dragging
-		# a file onto the exe. Attempt to import these as games.
+		# If any of the arguments are paths, it will be from the user opening 
+		# opening a game file with the exe. Attempt to open these as games.
 		elif arg.replace("\\", "/").is_abs_path():
-			import_game(arg.replace("\\", "/"))
+			var path = arg
+			open_game(path)
+			get_tree().quit()
+			Directory
 	
 	self.get_tree().connect("files_dropped", self, "import_games_from_drop")
 	refresh_games_list()
 	
 	# Check for new launcher version
-	req.connect("request_completed", self, "version_request_completed")
-	req.request("https://github.com/Haydoggo/GodotGameLauncher/releases/latest")
+	if not OS.is_debug_build() or true:
+		req.connect("request_completed", self, "version_request_completed")
+		req.request("https://github.com/Haydoggo/GodotGameLauncher/releases/latest")
 
 func _process(_delta):
 	if updating:
-		download_label.text = "%dkB of %dkB downloaded" % [req.get_downloaded_bytes()/1024, update_file_size/1024]
+		download_label.text = "%skB of %skB downloaded" %\
+				 [add_commas(req.get_downloaded_bytes()/1024),
+				  add_commas(update_file_size/1024)]
 		progress_bar.value = req.get_downloaded_bytes()/float(update_file_size) * 100.0
 
 func version_request_completed(_result: int, response_code: int, _headers: PoolStringArray, body: PoolByteArray):
@@ -58,7 +64,7 @@ func version_request_completed(_result: int, response_code: int, _headers: PoolS
 		var version_num_start = s.find(tag_token) + tag_token.length()
 		var version_num_end = s.find("\"", version_num_start)
 		var latest_version = s.substr(version_num_start, version_num_end - version_num_start)
-		
+		update_launcher_button.text += " (%s available)" %  latest_version
 		if current_version != latest_version:
 			update_launcher_button.visible = true
 			update_launcher_button.connect("pressed", self, "update_launcher", [latest_version])
@@ -83,8 +89,9 @@ func update_launcher(version : String):
 	
 	# Wait until file size is downloaded
 	yield(req, "request_completed")
-	var _pid = OS.execute(req.download_file, ["updated"], false)
-	get_tree().quit()
+	if not OS.is_debug_build():
+		var _pid = OS.execute(req.download_file, ["updated"], false)
+		get_tree().quit()
 	
 func update_request_complete(_result: int, _response_code: int, headers: PoolStringArray, _body: PoolByteArray):
 	req.disconnect("request_completed", self, "update_request_complete")
@@ -101,7 +108,6 @@ func refresh_games_list():
 		dir.list_dir_begin(true)
 		var file_name = dir.get_next()
 		while file_name != "":
-			print("Found file: " + file_name)
 			var link = Button.new()
 			link.rect_scale.y = 2
 			games_list.add_child(link)
@@ -121,7 +127,7 @@ func _on_ImportGame_pressed():
 	fileDiag.access = FileDialog.ACCESS_FILESYSTEM
 	fileDiag.popup_centered_ratio()
 	fileDiag.connect("file_selected", self, "import_game")
-	fileDiag.connect("files_selected", self, "import_games")
+	fileDiag.connect("files_selected", self, "import_game")
 
 func _on_LoadGame_pressed():
 	var fileDiag = FileDialog.new()
@@ -137,6 +143,9 @@ func _on_LoadGame_pressed():
 	fileDiag.popup_centered_ratio()
 
 func import_game(filePath:String):
+	if filePath.get_extension() != "pck":
+		print_debug("Invalid file type")
+		return
 	print("importing game")
 	var fileName = filePath.substr(filePath.find_last("/")+1, -1)
 	var dirMngr = Directory.new()
@@ -165,9 +174,8 @@ func save_game(filePath:String):
 	refresh_games_list()
 
 func open_game(filePath:String):
-	print(filePath)
 	if filePath.get_extension() != "pck":
-		print("Invalid file type")
+		print_debug("Invalid file type")
 	else:
 		var path = filePath.substr(0,filePath.find_last("/"))
 		var fileName = filePath.substr(filePath.find_last("/")+1, -1)
@@ -184,3 +192,21 @@ func import_games_from_drop(filePaths:PoolStringArray, _fromMonitor:int):
 	
 func open_games_folder():
 	var _err = OS.shell_open(save_location)
+
+# https://www.croben.com/2020/10/add-commas-on-floats-or-ints-in-gdscript.html
+func add_commas(value: int) -> String:
+	# Convert value to string.
+	var str_value: String = str(value)
+	
+	# Check if the value is positive or negative.
+	# Use index 0(excluded) if positive to avoid comma before the 1st digit.
+	# Use index 1(excluded) if negative to avoid comma after the - sign.
+	var loop_end: int = 0 if value > -1 else 1
+	
+	# Loop backward starting at the last 3 digits,
+	# add comma then, repeat every 3rd step.
+	for i in range(str_value.length()-3, loop_end, -3):
+		str_value = str_value.insert(i, ",")
+	
+	# Return the formatted string.
+	return str_value
