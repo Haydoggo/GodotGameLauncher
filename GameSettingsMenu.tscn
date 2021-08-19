@@ -116,9 +116,10 @@ margin_bottom = 18.0
 text = "Engine"
 
 [node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Engine"]
-margin_left = 732.0
+margin_left = 560.0
 margin_right = 760.0
 margin_bottom = 22.0
+rect_min_size = Vector2( 200, 0 )
 focus_mode = 0
 size_flags_horizontal = 10
 

@@ -25,7 +25,7 @@ onready var settings_menu := $"../SettingsMenu"
 onready var game_settings_menu := $"../GameSettingsMenu"
 
 func _ready():
-	OS.min_window_size = Vector2(400, 200)
+	OS.min_window_size = Vector2(600, 200)
 	
 	if not dir.dir_exists(save_location):
 		dir.make_dir(save_location)

@@ -34,9 +34,12 @@ __meta__ = {
 }
 
 [node name="MainMenu" parent="MarginContainer" instance=ExtResource( 1 )]
+margin_right = 590.0
 
 [node name="SettingsMenu" parent="MarginContainer" instance=ExtResource( 3 )]
 visible = false
+margin_right = 590.0
 
 [node name="GameSettingsMenu" parent="MarginContainer" instance=ExtResource( 2 )]
 visible = false
+margin_right = 590.0

@@ -87,9 +87,10 @@ margin_bottom = 18.0
 text = "Launcher behaviour on opening game"
 
 [node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGameBehaviour"]
-margin_left = 732.0
+margin_left = 560.0
 margin_right = 760.0
 margin_bottom = 22.0
+rect_min_size = Vector2( 200, 0 )
 focus_mode = 0
 size_flags_horizontal = 10
 
@@ -113,9 +114,11 @@ margin_bottom = 18.0
 text = "Behaviour on opening game file directly"
 
 [node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenFile"]
-margin_left = 732.0
+margin_left = 560.0
 margin_right = 760.0
 margin_bottom = 22.0
+rect_min_size = Vector2( 200, 0 )
+focus_mode = 0
 size_flags_horizontal = 10
 
 [node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
@@ -141,12 +144,12 @@ margin_bottom = 18.0
 text = "Replace files?"
 
 [node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Replace"]
-margin_left = 732.0
+margin_left = 560.0
 margin_right = 760.0
 margin_bottom = 22.0
+rect_min_size = Vector2( 200, 0 )
 focus_mode = 0
 size_flags_horizontal = 10
-pressed = true
 
 [connection signal="pressed" from="Control/MarginContainer/Buttons/Back" to="." method="_on_Back_pressed"]
 [connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGameBehaviour/OptionButton" to="." method="_on_CloseBehaviour_item_selected"]
