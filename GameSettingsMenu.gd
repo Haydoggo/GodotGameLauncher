@@ -13,7 +13,7 @@ func _ready():
 
 func _on_visibility_changed():
 	if visible:
-		title_label.text = "%s Settings" % Settings.data.games[game_file].name
+		title_label.text = "%s Settings" % game_file
 		name_field.text = Settings.data.games[game_file].name
 
 func _on_LineEdit_text_changed(new_text:String):

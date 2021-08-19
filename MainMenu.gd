@@ -184,7 +184,7 @@ func select_game(game_path : String):
 # To replace the file or not, depending on their settings.
 func import_game(file_path:String):
 	if file_path.get_extension() != "pck":
-		print("Invalid file type")
+		print_debug("Invalid file type")
 		return
 	if dir.file_exists(save_location + file_path.get_file()):
 		if Settings.data.action_on_replace == Settings.ACTION_ON_REPLACE.DoNotReplace:
@@ -201,7 +201,6 @@ func import_game(file_path:String):
 			popup.queue_free()
 			return
 	save_game(file_path)
-	return
 
 func import_games(file_paths:PoolStringArray):
 	for file_path in file_paths:
@@ -245,7 +244,6 @@ func _on_Settings_pressed():
 	settings_menu.show()
 
 func _on_GameSettings_pressed():
-	print("clicked")
 	game_settings_menu.game_file = last_selected_game
 	hide()
 	game_settings_menu.show()
