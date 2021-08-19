@@ -17,12 +17,19 @@ _global_script_class_icons={
 config/name="Launcher"
 run/main_scene="res://Launcher.tscn"
 run/low_processor_mode=true
-boot_splash/bg_color=Color( 1, 0.352941, 0, 1 )
+
+[autoload]
+
+Settings="*res://Settings.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=400
-window/size/height=400
+window/size/width=800
+window/size/height=450
 window/dpi/allow_hidpi=true
 window/vsync/vsync_via_compositor=true
 window/energy_saving/keep_screen_on=false

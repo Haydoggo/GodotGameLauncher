@@ -1,0 +1,154 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://SettingsMenu.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.219608, 0.278431, 1 )
+
+[node name="SettingsMenu" type="VBoxContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 440.0
+script = ExtResource( 1 )
+
+[node name="Title" type="Label" parent="."]
+margin_right = 780.0
+margin_bottom = 14.0
+text = "Settings"
+
+[node name="Control" type="Control" parent="."]
+margin_top = 18.0
+margin_right = 780.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="Control/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 770.0
+margin_bottom = 402.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Control/MarginContainer/Buttons"]
+margin_right = 41.0
+margin_bottom = 22.0
+size_flags_horizontal = 0
+text = "Save"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/Buttons"]
+margin_top = 26.0
+margin_right = 760.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer"]
+margin_right = 760.0
+margin_bottom = 366.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OpenGameBehaviour" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_right = 760.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGameBehaviour"]
+margin_top = 4.0
+margin_right = 239.0
+margin_bottom = 18.0
+text = "Launcher behaviour on opening game"
+
+[node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGameBehaviour"]
+margin_left = 732.0
+margin_right = 760.0
+margin_bottom = 22.0
+focus_mode = 0
+size_flags_horizontal = 10
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 760.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+
+[node name="OpenFile" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 34.0
+margin_right = 760.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenFile"]
+margin_top = 4.0
+margin_right = 254.0
+margin_bottom = 18.0
+text = "Behaviour on opening game file directly"
+
+[node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenFile"]
+margin_left = 732.0
+margin_right = 760.0
+margin_bottom = 22.0
+size_flags_horizontal = 10
+
+[node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 760.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Replace" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 760.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Replace"]
+margin_top = 4.0
+margin_right = 87.0
+margin_bottom = 18.0
+text = "Replace files?"
+
+[node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Replace"]
+margin_left = 732.0
+margin_right = 760.0
+margin_bottom = 22.0
+focus_mode = 0
+size_flags_horizontal = 10
+pressed = true
+
+[connection signal="pressed" from="Control/MarginContainer/Buttons/Back" to="." method="_on_Back_pressed"]
+[connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGameBehaviour/OptionButton" to="." method="_on_CloseBehaviour_item_selected"]
+[connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenFile/OptionButton" to="." method="_on_OpenFile_item_selected"]
+[connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Replace/OptionButton" to="." method="_on_Replace_item_selected"]

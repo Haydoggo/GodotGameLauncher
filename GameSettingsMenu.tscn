@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GameSettingsMenu.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.219608, 0.278431, 1 )
+
+[node name="GameSettingsMenu" type="VBoxContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 440.0
+script = ExtResource( 1 )
+
+[node name="Title" type="Label" parent="."]
+margin_right = 780.0
+margin_bottom = 14.0
+text = "Game"
+
+[node name="Control" type="Control" parent="."]
+margin_top = 18.0
+margin_right = 780.0
+margin_bottom = 430.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="Control/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 770.0
+margin_bottom = 402.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Control/MarginContainer/Buttons"]
+margin_right = 41.0
+margin_bottom = 22.0
+size_flags_horizontal = 0
+text = "Save"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/Buttons"]
+margin_top = 26.0
+margin_right = 760.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer"]
+margin_right = 760.0
+margin_bottom = 366.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DisplayName" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_right = 760.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/DisplayName"]
+margin_top = 5.0
+margin_right = 89.0
+margin_bottom = 19.0
+text = "Display Name"
+
+[node name="LineEdit" type="LineEdit" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/DisplayName"]
+margin_left = 460.0
+margin_right = 760.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 300, 0 )
+focus_mode = 0
+size_flags_horizontal = 10
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 760.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="Engine" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 760.0
+margin_bottom = 58.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+
+[node name="Label" type="Label" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Engine"]
+margin_top = 4.0
+margin_right = 42.0
+margin_bottom = 18.0
+text = "Engine"
+
+[node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Engine"]
+margin_left = 732.0
+margin_right = 760.0
+margin_bottom = 22.0
+focus_mode = 0
+size_flags_horizontal = 10
+
+[node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 760.0
+margin_bottom = 66.0
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="Control/MarginContainer/Buttons/Back" to="." method="_on_Back_pressed"]
+[connection signal="text_entered" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/DisplayName/LineEdit" to="." method="_on_LineEdit_text_entered"]

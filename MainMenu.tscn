@@ -1,0 +1,229 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.2, 0.219608, 0.278431, 1 )
+
+[node name="MainMenu" type="VBoxContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 790.0
+margin_bottom = 440.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_right = 780.0
+margin_bottom = 14.0
+text = "Godot Game Launcher"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+margin_top = 18.0
+margin_right = 780.0
+margin_bottom = 430.0
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HSplitContainer"]
+margin_right = 514.0
+margin_bottom = 412.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Panel" type="Panel" parent="HSplitContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmptyLabel" type="Label" parent="HSplitContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+text = "- Imported games will appear here -
+- Drop .pck files into this window to import -"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SavedGames" type="Label" parent="HSplitContainer/Control/VBoxContainer"]
+margin_right = 494.0
+margin_bottom = 14.0
+text = "Games List"
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/Control/VBoxContainer"]
+margin_top = 18.0
+margin_right = 494.0
+margin_bottom = 402.0
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/Control/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_right = 484.0
+margin_bottom = 374.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GamesList" type="VBoxContainer" parent="HSplitContainer/Control/VBoxContainer/MarginContainer/ScrollContainer"]
+margin_right = 474.0
+margin_bottom = 374.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="HSplitContainer"]
+margin_left = 526.0
+margin_right = 780.0
+margin_bottom = 412.0
+size_flags_horizontal = 3
+
+[node name="LaunchGame" type="Button" parent="HSplitContainer/Buttons"]
+margin_right = 254.0
+margin_bottom = 22.0
+focus_mode = 0
+disabled = true
+text = "Launch Game"
+
+[node name="GameSettings" type="Button" parent="HSplitContainer/Buttons"]
+margin_top = 26.0
+margin_right = 254.0
+margin_bottom = 48.0
+focus_mode = 0
+size_flags_vertical = 8
+disabled = true
+text = "Game Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="HSplitContainer/Buttons"]
+margin_top = 52.0
+margin_right = 254.0
+margin_bottom = 56.0
+
+[node name="ImportGame" type="Button" parent="HSplitContainer/Buttons"]
+visible = false
+margin_left = -580.0
+margin_right = -200.0
+margin_bottom = 22.0
+focus_mode = 0
+disabled = true
+text = "Import"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RefreshList" type="Button" parent="HSplitContainer/Buttons"]
+margin_top = 60.0
+margin_right = 254.0
+margin_bottom = 82.0
+focus_mode = 0
+size_flags_vertical = 8
+text = "Refresh List"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenFolder" type="Button" parent="HSplitContainer/Buttons"]
+margin_top = 86.0
+margin_right = 254.0
+margin_bottom = 108.0
+focus_mode = 0
+size_flags_vertical = 8
+text = "Open games folder"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="HSplitContainer/Buttons"]
+margin_top = 112.0
+margin_right = 254.0
+margin_bottom = 134.0
+focus_mode = 0
+size_flags_vertical = 8
+text = "Launcher Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="HSplitContainer/Buttons"]
+margin_top = 138.0
+margin_right = 254.0
+margin_bottom = 142.0
+
+[node name="CheckingUpdateLabel" type="Label" parent="HSplitContainer/Buttons"]
+modulate = Color( 0.321569, 0.341176, 0.4, 1 )
+margin_top = 146.0
+margin_right = 254.0
+margin_bottom = 160.0
+text = "Checking for updates..."
+align = 1
+valign = 1
+
+[node name="UpdateLauncher" type="Button" parent="HSplitContainer/Buttons"]
+visible = false
+margin_left = -388.0
+margin_top = 340.0
+margin_right = -8.0
+margin_bottom = 362.0
+focus_mode = 0
+size_flags_vertical = 8
+text = "Update Launcher"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownloadLabel" type="Label" parent="HSplitContainer/Buttons"]
+visible = false
+margin_left = -388.0
+margin_top = 348.0
+margin_right = -8.0
+margin_bottom = 362.0
+
+[node name="ProgressBar" type="ProgressBar" parent="HSplitContainer/Buttons"]
+visible = false
+margin_left = -388.0
+margin_top = 348.0
+margin_right = -8.0
+margin_bottom = 362.0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+download_chunk_size = 131072
+use_threads = true
+
+[node name="DownloadHTTPRequest" type="HTTPRequest" parent="."]
+download_chunk_size = 131072
+use_threads = true
+
+[connection signal="pressed" from="HSplitContainer/Buttons/LaunchGame" to="." method="_on_LaunchGame_pressed"]
+[connection signal="pressed" from="HSplitContainer/Buttons/GameSettings" to="." method="_on_GameSettings_pressed"]
+[connection signal="pressed" from="HSplitContainer/Buttons/ImportGame" to="." method="_on_ImportGame_pressed"]
+[connection signal="pressed" from="HSplitContainer/Buttons/RefreshList" to="." method="refresh_games_list"]
+[connection signal="pressed" from="HSplitContainer/Buttons/OpenFolder" to="." method="_on_OpenFolder_pressed"]
+[connection signal="pressed" from="HSplitContainer/Buttons/Settings" to="." method="_on_Settings_pressed"]
