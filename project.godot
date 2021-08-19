@@ -30,7 +30,6 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=600
 window/size/height=450
-window/dpi/allow_hidpi=true
 window/vsync/vsync_via_compositor=true
 window/energy_saving/keep_screen_on=false
 
