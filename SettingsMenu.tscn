@@ -116,6 +116,7 @@ text = "Behaviour on opening game file directly"
 margin_left = 732.0
 margin_right = 760.0
 margin_bottom = 22.0
+focus_mode = 0
 size_flags_horizontal = 10
 
 [node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
@@ -146,7 +147,6 @@ margin_right = 760.0
 margin_bottom = 22.0
 focus_mode = 0
 size_flags_horizontal = 10
-pressed = true
 
 [connection signal="pressed" from="Control/MarginContainer/Buttons/Back" to="." method="_on_Back_pressed"]
 [connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGameBehaviour/OptionButton" to="." method="_on_CloseBehaviour_item_selected"]
