@@ -11,6 +11,9 @@ margin_top = 10.0
 margin_right = 790.0
 margin_bottom = 440.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="."]
 margin_right = 780.0
@@ -76,34 +79,33 @@ size_flags_vertical = 3
 
 [node name="DisplayName" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
 margin_right = 760.0
-margin_bottom = 24.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 custom_constants/separation = 16
 
 [node name="Label" type="Label" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/DisplayName"]
-margin_top = 5.0
+margin_top = 4.0
 margin_right = 89.0
-margin_bottom = 19.0
+margin_bottom = 18.0
 text = "Display Name"
 
 [node name="LineEdit" type="LineEdit" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/DisplayName"]
 margin_left = 460.0
 margin_right = 760.0
-margin_bottom = 24.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 300, 0 )
-focus_mode = 0
 size_flags_horizontal = 10
 
 [node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
-margin_top = 28.0
+margin_top = 26.0
 margin_right = 760.0
-margin_bottom = 32.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 
 [node name="Engine" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
-margin_top = 36.0
+margin_top = 34.0
 margin_right = 760.0
-margin_bottom = 58.0
+margin_bottom = 56.0
 size_flags_horizontal = 3
 custom_constants/separation = 16
 
@@ -121,10 +123,10 @@ focus_mode = 0
 size_flags_horizontal = 10
 
 [node name="HSeparator2" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
-margin_top = 62.0
+margin_top = 60.0
 margin_right = 760.0
-margin_bottom = 66.0
+margin_bottom = 64.0
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="Control/MarginContainer/Buttons/Back" to="." method="_on_Back_pressed"]
-[connection signal="text_entered" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/DisplayName/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="text_changed" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/DisplayName/LineEdit" to="." method="_on_LineEdit_text_changed"]
