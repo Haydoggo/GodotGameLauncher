@@ -249,4 +249,4 @@ func _on_GameSettings_pressed():
 	game_settings_menu.show()
 
 func _on_OpenFolder_pressed():
-	OS.shell_open(save_location)
+	OS.shell_open("file://" + save_location)

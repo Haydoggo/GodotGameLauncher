@@ -56,6 +56,7 @@ func load_settings():
 		var file_data = JSON.parse(file.get_line()).result
 		for key in file_data.keys():
 			data[key] = file_data[key]
+		file.close()
 
 func save_settings():
 	file.open(config_file_path, File.WRITE)
