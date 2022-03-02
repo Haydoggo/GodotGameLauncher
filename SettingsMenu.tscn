@@ -41,9 +41,6 @@ custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" type="VBoxContainer" parent="Control/MarginContainer"]
 margin_left = 10.0
@@ -55,16 +52,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Control/MarginContainer/Buttons"]
-margin_right = 41.0
-margin_bottom = 22.0
-size_flags_horizontal = 0
-text = "Save"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/MarginContainer/Buttons"]
-margin_top = 26.0
 margin_right = 760.0
-margin_bottom = 392.0
+margin_bottom = 366.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -77,6 +67,7 @@ size_flags_vertical = 3
 [node name="OpenGameBehaviour" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
 margin_right = 760.0
 margin_bottom = 22.0
+hint_tooltip = "What the launcher does when you open a game"
 size_flags_horizontal = 3
 custom_constants/separation = 16
 
@@ -104,6 +95,7 @@ size_flags_horizontal = 3
 margin_top = 34.0
 margin_right = 760.0
 margin_bottom = 56.0
+hint_tooltip = "How a .pck file is processed when opened by itself/dragged into the launcher"
 size_flags_horizontal = 3
 custom_constants/separation = 16
 
@@ -134,6 +126,7 @@ __meta__ = {
 margin_top = 68.0
 margin_right = 760.0
 margin_bottom = 90.0
+hint_tooltip = "Whether .pck files are replaced automatically on import or ignored"
 size_flags_horizontal = 3
 custom_constants/separation = 16
 
@@ -151,7 +144,67 @@ rect_min_size = Vector2( 200, 0 )
 focus_mode = 0
 size_flags_horizontal = 10
 
-[connection signal="pressed" from="Control/MarginContainer/Buttons/Back" to="." method="_on_Back_pressed"]
+[node name="HSeparator3" type="HSeparator" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 94.0
+margin_right = 760.0
+margin_bottom = 98.0
+
+[node name="OpenGamesFolder" type="Button" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 137.0
+margin_bottom = 124.0
+hint_tooltip = "Opens the game save folder in the local file browser"
+size_flags_horizontal = 0
+text = "Open Games folder"
+
+[node name="OpenEnginesFolder" type="Button" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 128.0
+margin_right = 141.0
+margin_bottom = 150.0
+hint_tooltip = "Opens the engine save folder in the local file browser"
+size_flags_horizontal = 0
+text = "Open Engines folder"
+
+[node name="CopyBuiltin" type="Button" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 154.0
+margin_right = 251.0
+margin_bottom = 176.0
+hint_tooltip = "Copies the godot engine the launcher is running with into the engines folder"
+size_flags_horizontal = 0
+disabled = true
+text = "Copy built-in engine to Engines folder"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer"]
+margin_top = 180.0
+margin_right = 760.0
+margin_bottom = 180.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Buttons"]
+margin_top = 370.0
+margin_right = 760.0
+margin_bottom = 392.0
+alignment = 2
+
+[node name="Okay" type="Button" parent="Control/MarginContainer/Buttons/HBoxContainer"]
+margin_left = 658.0
+margin_right = 702.0
+margin_bottom = 22.0
+size_flags_horizontal = 0
+text = "Okay"
+
+[node name="Cancel" type="Button" parent="Control/MarginContainer/Buttons/HBoxContainer"]
+margin_left = 706.0
+margin_right = 760.0
+margin_bottom = 22.0
+size_flags_horizontal = 0
+text = "Cancel"
+
+[connection signal="visibility_changed" from="." to="." method="_on_SettingsMenu_opened"]
 [connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGameBehaviour/OptionButton" to="." method="_on_CloseBehaviour_item_selected"]
 [connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenFile/OptionButton" to="." method="_on_OpenFile_item_selected"]
 [connection signal="item_selected" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/Replace/OptionButton" to="." method="_on_Replace_item_selected"]
+[connection signal="pressed" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenGamesFolder" to="." method="_on_OpenGamesFolder_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/OpenEnginesFolder" to="." method="_on_OpenEnginesFolder_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Buttons/ScrollContainer/VBoxContainer/CopyBuiltin" to="." method="_on_CopyBuiltin_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Buttons/HBoxContainer/Okay" to="." method="_on_Okay_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/Buttons/HBoxContainer/Cancel" to="." method="_on_Cancel_pressed"]

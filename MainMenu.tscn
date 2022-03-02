@@ -129,9 +129,9 @@ margin_bottom = 56.0
 
 [node name="ImportGame" type="Button" parent="HSplitContainer/Buttons"]
 visible = false
-margin_left = -580.0
-margin_right = -200.0
-margin_bottom = 22.0
+margin_top = 60.0
+margin_right = 254.0
+margin_bottom = 82.0
 focus_mode = 0
 disabled = true
 text = "Import"
@@ -151,6 +151,7 @@ __meta__ = {
 }
 
 [node name="OpenFolder" type="Button" parent="HSplitContainer/Buttons"]
+visible = false
 margin_top = 86.0
 margin_right = 254.0
 margin_bottom = 108.0
@@ -162,9 +163,9 @@ __meta__ = {
 }
 
 [node name="Settings" type="Button" parent="HSplitContainer/Buttons"]
-margin_top = 112.0
+margin_top = 86.0
 margin_right = 254.0
-margin_bottom = 134.0
+margin_bottom = 108.0
 focus_mode = 0
 size_flags_vertical = 8
 text = "Launcher Settings"
@@ -173,15 +174,15 @@ __meta__ = {
 }
 
 [node name="HSeparator2" type="HSeparator" parent="HSplitContainer/Buttons"]
-margin_top = 138.0
+margin_top = 112.0
 margin_right = 254.0
-margin_bottom = 142.0
+margin_bottom = 116.0
 
 [node name="CheckingUpdateLabel" type="Label" parent="HSplitContainer/Buttons"]
 modulate = Color( 0.321569, 0.341176, 0.4, 1 )
-margin_top = 146.0
+margin_top = 120.0
 margin_right = 254.0
-margin_bottom = 160.0
+margin_bottom = 134.0
 text = "Checking for updates..."
 align = 1
 valign = 1

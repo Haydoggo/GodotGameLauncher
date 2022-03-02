@@ -27,8 +27,26 @@ enum ACTION_ON_REPLACE{
 
 var config_file_path = OS.get_user_data_dir() + "/settings.cfg"
 var data := {}
-onready var dir := Directory.new()
 onready var file := File.new()
+
+var save_location := OS.get_user_data_dir() + "/SavedGames/"
+var engine_save_location := OS.get_user_data_dir() + "/Engines/"
+
+var launcher_godot_version = Engine.get_version_info().string.split("-")[0]
+
+func get_installed_engines(include_builtin = true) -> Array:
+	var dir := Directory.new()
+	var arr := []
+	if include_builtin: 
+		arr.append(launcher_godot_version)
+	if dir.open(engine_save_location) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir():
+				arr.append(file_name.get_file().get_basename())
+			file_name = dir.get_next()
+	return arr
 
 func _ready():
 	load_settings()
@@ -39,7 +57,7 @@ func _exit_tree():
 func add_game(game_file_name : String):
 	data.games[game_file_name] = {
 		name=game_file_name.get_file().get_basename(),
-		godot_version="3.3.2",
+		godot_version = launcher_godot_version,
 	}
 
 func load_settings():
@@ -51,13 +69,14 @@ func load_settings():
 			games={},
 		}
 	
+	var dir = Directory.new()
 	if dir.file_exists(config_file_path):
 		file.open(config_file_path, File.READ)
 		var file_data = JSON.parse(file.get_line()).result
 		for key in file_data.keys():
 			data[key] = file_data[key]
 		file.close()
-
+	
 func save_settings():
 	file.open(config_file_path, File.WRITE)
 	file.store_line(to_json(data))

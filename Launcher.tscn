@@ -10,9 +10,6 @@ bg_color = Color( 0.12549, 0.141176, 0.192157, 1 )
 [node name="Launcher" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0

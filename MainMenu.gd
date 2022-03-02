@@ -2,8 +2,9 @@ extends Control
 
 const game_button_scene = preload("res://GameButton.tscn")
 
-var save_location := OS.get_user_data_dir() + "/SavedGames/"
-var current_version := "v0.4"
+var save_location := Settings.save_location
+var engine_save_location := Settings.engine_save_location
+var current_version := "v0.5"
 var updating = false
 var update_file_size := 0.0
 var selected_game
@@ -29,6 +30,9 @@ func _ready():
 	
 	if not dir.dir_exists(save_location):
 		dir.make_dir(save_location)
+	
+	if not dir.dir_exists(engine_save_location):
+		dir.make_dir(engine_save_location)
 	
 	title_label.text += " " + current_version
 	
@@ -104,6 +108,8 @@ func version_request_completed(_result: int, response_code: int, _headers: PoolS
 		if current_version != latest_version:
 			update_launcher_button.show()
 			update_launcher_button.connect("pressed", self, "update_launcher", [latest_version])
+		else:
+			$HSplitContainer/Buttons/HSeparator2.hide()
 	checking_update_label.hide()
 
 func update_launcher(version : String) -> void:
@@ -220,20 +226,32 @@ func save_game(file_path:String):
 func open_game(file_path:String):
 	if file_path.get_extension() != "pck":
 		print_debug("Invalid file type")
-	else:
-		OS.execute(OS.get_executable_path(),["--main-pack", file_path.get_file(),
-				"--path", file_path.get_base_dir()],false)
-		match int(Settings.data.action_on_launch):
-			Settings.ACTION_ON_LAUNCH.None:
-				pass
-			Settings.ACTION_ON_LAUNCH.Minimise:
-				# for some reason immediately minimising causes the selected button
-				# to register another input click and therefore launch the game again,
-				# so we yield one frame here
-				yield(get_tree(), "idle_frame")
-				OS.window_minimized = true
-			Settings.ACTION_ON_LAUNCH.Close:
-				get_tree().quit()
+		return
+	
+	var game_file_name = file_path.get_file()
+	
+	var game_engine_version = Settings.data.games[game_file_name].godot_version
+	print(game_engine_version)
+	if not game_engine_version in Settings.get_installed_engines():
+		_on_GameSettings_pressed()
+		return
+	
+	var engine_path := OS.get_executable_path()
+	if game_engine_version != Settings.launcher_godot_version:
+		engine_path = Settings.engine_save_location + game_engine_version + ".exe"
+	OS.execute(engine_path, ["--main-pack", file_path.get_file(),
+			"--path", file_path.get_base_dir()],false)
+	match int(Settings.data.action_on_launch):
+		Settings.ACTION_ON_LAUNCH.None:
+			pass
+		Settings.ACTION_ON_LAUNCH.Minimise:
+			# for some reason immediately minimising causes the selected button
+			# to register another input click and therefore launch the game again,
+			# so we yield one frame here
+			yield(get_tree(), "idle_frame")
+			OS.window_minimized = true
+		Settings.ACTION_ON_LAUNCH.Close:
+			get_tree().quit()
 
 func open_games(file_paths:PoolStringArray):
 	for file_path in file_paths:
